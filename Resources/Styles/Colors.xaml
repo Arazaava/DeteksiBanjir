@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Swiss Style Palette -->
+    <!-- Minimalist: White, Black, Grays, with one primary accent (Red) -->
+    <Color x:Key="Primary">#E32636</Color> <!-- Alizarin Crimson / Red Accent -->
+    <Color x:Key="Secondary">#111111</Color> <!-- Near Black -->
+    <Color x:Key="Tertiary">#444444</Color> <!-- Dark Gray -->
+    
+    <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="Black">#000000</Color>
+    <Color x:Key="LightGray">#F5F5F5</Color>
+    <Color x:Key="MediumGray">#CCCCCC</Color>
+
+    <!-- Alert Colors -->
+    <Color x:Key="NoAlertColor">#4CAF50</Color>
+    <Color x:Key="YellowAlertColor">#FFEB3B</Color>
+    <Color x:Key="OrangeAlertColor">#FF9800</Color>
+    <Color x:Key="RedAlertColor">#F44336</Color>
+
+</ResourceDictionary>
