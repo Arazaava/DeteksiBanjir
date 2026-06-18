@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DeteksiBanjir.ViewModels"
+             x:Class="DeteksiBanjir.Views.LoginPage"
+             Title="Login">
+
+    <Grid ColumnDefinitions="*, 2*, *" RowDefinitions="*, auto, *">
+        <VerticalStackLayout Grid.Column="1" Grid.Row="1" Spacing="20">
+            <Label Text="DETEKSI BANJIR." 
+                   Style="{StaticResource HeaderLabel}" 
+                   HorizontalOptions="Start" />
+            
+            <Label Text="System Login" 
+                   Style="{StaticResource SubHeaderLabel}" 
+                   HorizontalOptions="Start" 
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Username" HorizontalOptions="Start"/>
+            <Entry Text="{Binding Username}" Placeholder="Enter username" />
+
+            <Label Text="Password" HorizontalOptions="Start" Margin="0,10,0,0"/>
+            <Entry Text="{Binding Password}" Placeholder="Enter password" IsPassword="True" />
+
+            <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Primary}" />
+
+            <Button Text="LOGIN" Command="{Binding LoginCommand}" Margin="0,20,0,0" />
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

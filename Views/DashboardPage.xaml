@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DeteksiBanjir.ViewModels"
+             x:Class="DeteksiBanjir.Views.DashboardPage"
+             Title="Dashboard">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="5" Margin="0,0,0,15">
+            <Label Text="DASHBOARD." Style="{StaticResource HeaderLabel}" />
+            <Grid ColumnDefinitions="*, Auto">
+                <Label Grid.Column="0" Text="{Binding WelcomeMessage}" Style="{StaticResource SubHeaderLabel}" VerticalOptions="Center" />
+                <Label Grid.Column="1" Text="{Binding LastUpdated, StringFormat='Updated: {0}'}" FontSize="11" TextColor="Gray" VerticalOptions="Center" />
+            </Grid>
+            <BoxView HeightRequest="1" Color="{StaticResource Secondary}" Margin="0,5,0,0"/>
+        </VerticalStackLayout>
+
+        <!-- Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="20">
+                
+                <!-- AI Status Comparision -->
+                <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+                    <!-- Fuzzy Card -->
+                    <Frame Grid.Column="0" Padding="15">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="FUZZY LOGIC" FontSize="12" FontAttributes="Bold" TextColor="Gray" />
+                            <Label Text="{Binding FuzzyCategory}" FontSize="20" FontAttributes="Bold" TextColor="{Binding FuzzyColor}" />
+                            <Label Text="{Binding FuzzyRiskScore, StringFormat='Risk Score: {0:F2}'}" FontSize="14" FontAttributes="Bold" />
+                            <BoxView HeightRequest="4" Color="{Binding FuzzyColor}" HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                    </Frame>
+                    
+                    <!-- Neural Network Card -->
+                    <Frame Grid.Column="1" Padding="15">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="NEURAL NETWORK" FontSize="12" FontAttributes="Bold" TextColor="Gray" />
+                            <Label Text="{Binding NnCategory}" FontSize="20" FontAttributes="Bold" TextColor="{Binding NnColor}" />
+                            <Label Text="{Binding NnRiskScore, StringFormat='Risk Score: {0:F2}'}" FontSize="14" FontAttributes="Bold" />
+                            <BoxView HeightRequest="4" Color="{Binding NnColor}" HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Sensor Readings -->
+                <Frame Padding="15">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="LATEST SENSOR DATA" Style="{StaticResource SubHeaderLabel}" />
+                        
+                        <!-- Water Level -->
+                        <VerticalStackLayout Spacing="5">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Grid.Column="0" Text="Water Level (Ketinggian Air - Max 10m)" />
+                                <Label Grid.Column="1" Text="{Binding WaterLevel, StringFormat='{0:F2} m'}" FontAttributes="Bold" />
+                            </Grid>
+                            <ProgressBar Progress="{Binding WaterLevelRatio}" HeightRequest="6" ProgressColor="{StaticResource Primary}" />
+                        </VerticalStackLayout>
+
+                        <!-- Rainfall -->
+                        <VerticalStackLayout Spacing="5">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Grid.Column="0" Text="Rainfall (Curah Hujan - Max 100mm/h)" />
+                                <Label Grid.Column="1" Text="{Binding Rainfall, StringFormat='{0:F2} mm/h'}" FontAttributes="Bold" />
+                            </Grid>
+                            <ProgressBar Progress="{Binding RainfallRatio}" HeightRequest="6" ProgressColor="{StaticResource Primary}" />
+                        </VerticalStackLayout>
+
+                        <!-- Discharge -->
+                        <VerticalStackLayout Spacing="5">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Grid.Column="0" Text="Discharge (Debit Air - Max 150m³/s)" />
+                                <Label Grid.Column="1" Text="{Binding Discharge, StringFormat='{0:F2} m³/s'}" FontAttributes="Bold" />
+                            </Grid>
+                            <ProgressBar Progress="{Binding DischargeRatio}" HeightRequest="6" ProgressColor="{StaticResource Primary}" />
+                        </VerticalStackLayout>
+
+                        <BoxView HeightRequest="1" Color="{StaticResource MediumGray}" Margin="0,5" />
+                        
+                        <!-- Weather metrics -->
+                        <Grid ColumnDefinitions="*, *">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Temperature" FontSize="12" TextColor="Gray" />
+                                <Label Text="{Binding Temperature, StringFormat='{0:F1} °C'}" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="Humidity" FontSize="12" TextColor="Gray" />
+                                <Label Text="{Binding Humidity, StringFormat='{0:F1} %'}" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </Grid>
+                        
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Footer / Action -->
+        <Grid Grid.Row="2" ColumnDefinitions="2*, *" ColumnSpacing="15" Margin="0,15,0,0">
+            <Button Grid.Column="0" Text="AI CHATBOT ASSISTANT" Style="{StaticResource AccentButton}" Command="{Binding OpenChatbotCommand}" />
+            <Button Grid.Column="1" Text="LOGOUT" Command="{Binding LogoutCommand}" />
+        </Grid>
+    </Grid>
+
+</ContentPage>

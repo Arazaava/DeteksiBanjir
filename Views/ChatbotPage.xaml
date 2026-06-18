@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DeteksiBanjir.ViewModels"
+             x:Class="DeteksiBanjir.Views.ChatbotPage"
+             Title="Chatbot">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="5" Margin="0,0,0,10">
+            <Label Text="AI ASSISTANT." Style="{StaticResource HeaderLabel}" />
+            <Label Text="Ask about flood status" Style="{StaticResource SubHeaderLabel}" />
+            <BoxView HeightRequest="1" Color="{StaticResource Secondary}" Margin="0,10,0,0"/>
+        </VerticalStackLayout>
+
+        <!-- Chat History -->
+        <CollectionView Grid.Row="1" ItemsSource="{Binding ChatHistory}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" Padding="10">
+                        <Label Text="{Binding .}" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ActivityIndicator Grid.Row="1" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center" />
+
+        <!-- Input Area -->
+        <Grid Grid.Row="2" ColumnDefinitions="*, Auto" Margin="0,10,0,0" ColumnSpacing="10">
+            <Entry Grid.Column="0" Text="{Binding UserInput}" Placeholder="Type a message..." />
+            <Button Grid.Column="1" Text="SEND" Command="{Binding SendMessageCommand}" />
+        </Grid>
+    </Grid>
+
+</ContentPage>
